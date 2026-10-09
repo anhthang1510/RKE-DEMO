@@ -1,0 +1,9 @@
+{
+  "protocol": "RKE-LOCAL-DEMO-v1",
+  "key_bits": 128,
+  "hash_algorithm": "sha256",
+  "cipher": "AES-CBC",
+  "rotate_right_bits": 1,
+  "max_file_bytes": 5242880,
+  "poll_interval_seconds": 0.3
+}

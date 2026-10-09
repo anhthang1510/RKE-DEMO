@@ -1,0 +1,2 @@
+Chào Alice, Bob đã nhận được thông tin.
+File phản hồi này được mã hóa bằng một khóa ngẫu nhiên khác.

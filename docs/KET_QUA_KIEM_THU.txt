@@ -1,0 +1,74 @@
+KẾT QUẢ KIỂM THỬ BẢN BÀN GIAO
+Ngày thực hiện: 2026-10-02
+Python: 3.12.14
+cryptography: 46.0.0
+Nền tảng kiểm tra: Linux x86_64
+
+1. Bộ kiểm thử tự động
+Lệnh: python -m unittest discover -s tests -v
+Kết quả: 36/36 bài đạt.
+Có kiểm tra trực tiếp rằng AES giải mã không được gọi khi hash sai.
+
+2. Demo tự động
+Cấu hình 128 bit: 13/13 kiểm tra đạt.
+Cấu hình 256 bit: 13/13 kiểm tra đạt.
+Có xác nhận file nhận giống nguyên byte file gốc ở cả hai chiều.
+
+3. Hai chương trình chạy đồng thời
+Đã chạy alice.py và bob.py bằng hai tiến trình Python riêng.
+- Thiết lập phiên và K2: PASS.
+- Gửi file tên có khoảng trắng Alice -> Bob: PASS.
+- Gửi trả Bob -> Alice: PASS.
+- Gói sai hash không tạo thêm file nhận và không tăng bộ đếm: PASS.
+- Gửi lại bản gốc: PASS.
+- Phát lại gói đã nhận bị REPLAY: PASS.
+- Hai chương trình thoát bình thường: PASS.
+
+4. Giới hạn kiểm tra
+Các file .cmd dành cho Windows đã được soạn nhưng chưa chạy trên máy Windows.
+Không đánh giá tốc độ FPGA/IoT, không kiểm định mật mã độc lập hay chứng minh PFS.
+Thông số thời gian chạy bên dưới là kết quả môi trường này, không phải benchmark giao thức.
+Gói ZIP không chứa khóa riêng, trạng thái phiên, hoặc dữ liệu runtime của các lần kiểm tra.
+
+CHI TIẾT UNITTEST
+test_bool_and_noninteger_counters_rejected (test_protocol.CryptoBoundaryTests.test_bool_and_noninteger_counters_rejected) ... ok
+test_invalid_base64_and_truncated_ciphertext (test_protocol.CryptoBoundaryTests.test_invalid_base64_and_truncated_ciphertext) ... ok
+test_missing_fields_rejected (test_protocol.CryptoBoundaryTests.test_missing_fields_rejected) ... ok
+test_modified_filename_is_hash_bound (test_protocol.CryptoBoundaryTests.test_modified_filename_is_hash_bound) ... ok
+test_plain_session_key_not_sent (test_protocol.CryptoBoundaryTests.test_plain_session_key_not_sent) ... ok
+test_reflection_cannot_change_roles (test_protocol.CryptoBoundaryTests.test_reflection_cannot_change_roles) ... ok
+test_round_trip (test_protocol.CryptoBoundaryTests.test_round_trip) ... ok
+test_tampering_never_calls_aes_decrypt (test_protocol.CryptoBoundaryTests.test_tampering_never_calls_aes_decrypt) ... ok
+test_unexpected_fields_rejected (test_protocol.CryptoBoundaryTests.test_unexpected_fields_rejected) ... ok
+test_wrong_session_rejected (test_protocol.CryptoBoundaryTests.test_wrong_session_rejected) ... ok
+test_both_directions_and_independent_counters (test_protocol.EndpointTests.test_both_directions_and_independent_counters) ... ok
+test_changing_configuration_after_setup_fails (test_protocol.EndpointTests.test_changing_configuration_after_setup_fails) ... ok
+test_duplicate_json_fields_rejected (test_protocol.EndpointTests.test_duplicate_json_fields_rejected) ... ok
+test_empty_block_aligned_and_binary_files (test_protocol.EndpointTests.test_empty_block_aligned_and_binary_files) ... ok
+test_handshake_establishes_equal_secret (test_protocol.EndpointTests.test_handshake_establishes_equal_secret) ... ok
+test_hello_signature_tampering_rejected (test_protocol.EndpointTests.test_hello_signature_tampering_rejected) ... ok
+test_incomplete_temporary_bundle_is_ignored (test_protocol.EndpointTests.test_incomplete_temporary_bundle_is_ignored) ... ok
+test_invalid_then_valid_no_output_on_rejection (test_protocol.EndpointTests.test_invalid_then_valid_no_output_on_rejection) ... ok
+test_lost_welcome_recovered_by_connect (test_protocol.EndpointTests.test_lost_welcome_recovered_by_connect) ... ok
+test_malformed_json_is_quarantined_receiver_keeps_working (test_protocol.EndpointTests.test_malformed_json_is_quarantined_receiver_keeps_working) ... ok
+test_no_session_cannot_send (test_protocol.EndpointTests.test_no_session_cannot_send) ... ok
+test_process_lock_prevents_second_same_role_instance (test_protocol.EndpointTests.test_process_lock_prevents_second_same_role_instance) ... ok
+test_random_collision_retries_key_generation (test_protocol.EndpointTests.test_random_collision_retries_key_generation) ... ok
+test_replay_rejected (test_protocol.EndpointTests.test_replay_rejected) ... ok
+test_replayed_hello_does_not_reset_data_counter (test_protocol.EndpointTests.test_replayed_hello_does_not_reset_data_counter) ... ok
+test_restart_preserves_session_and_replay_protection (test_protocol.EndpointTests.test_restart_preserves_session_and_replay_protection) ... ok
+test_setup_is_idempotent (test_protocol.EndpointTests.test_setup_is_idempotent) ... ok
+test_unique_keys_for_repeated_sends (test_protocol.EndpointTests.test_unique_keys_for_repeated_sends) ... ok
+test_welcome_signature_tampering_rejected (test_protocol.EndpointTests.test_welcome_signature_tampering_rejected) ... ok
+test_wrong_order_requires_original_gap_to_be_filled (test_protocol.EndpointTests.test_wrong_order_requires_original_gap_to_be_filled) ... ok
+test_256_bit_rotation (test_protocol.MathTests.test_256_bit_rotation) ... ok
+test_addition_wraps_at_128_bits (test_protocol.MathTests.test_addition_wraps_at_128_bits) ... ok
+test_circular_shift_keeps_low_bit (test_protocol.MathTests.test_circular_shift_keeps_low_bit) ... ok
+test_invalid_filenames (test_protocol.MathTests.test_invalid_filenames) ... ok
+test_mask_unmask_equations (test_protocol.MathTests.test_mask_unmask_equations) ... ok
+test_256_profile_round_trip_and_limit (test_protocol.ProfileTests.test_256_profile_round_trip_and_limit) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 4.254s
+
+OK

@@ -1,0 +1,91 @@
+{
+  "python": "3.12.14",
+  "key_bits": 256,
+  "checks": [
+    {
+      "case": "Alice/Bob có cùng K2 và IV",
+      "passed": true
+    },
+    {
+      "case": "Alice -> Bob, toàn bộ nội dung trùng file gốc",
+      "passed": true
+    },
+    {
+      "case": "Bob -> Alice, toàn bộ nội dung trùng file gốc",
+      "passed": true
+    },
+    {
+      "case": "Sửa hash: HASH_MISMATCH, không tạo kết quả, không tăng bộ đếm",
+      "passed": true
+    },
+    {
+      "case": "Gửi lại bản gốc sau lỗi hash: nhận thành công",
+      "passed": true
+    },
+    {
+      "case": "Sửa ciphertext: HASH_MISMATCH, không tạo kết quả, không tăng bộ đếm",
+      "passed": true
+    },
+    {
+      "case": "Gửi lại bản gốc sau lỗi ciphertext: nhận thành công",
+      "passed": true
+    },
+    {
+      "case": "Sửa key: HASH_MISMATCH, không tạo kết quả, không tăng bộ đếm",
+      "passed": true
+    },
+    {
+      "case": "Gửi lại bản gốc sau lỗi key: nhận thành công",
+      "passed": true
+    },
+    {
+      "case": "Sửa iv: HASH_MISMATCH, không tạo kết quả, không tăng bộ đếm",
+      "passed": true
+    },
+    {
+      "case": "Gửi lại bản gốc sau lỗi iv: nhận thành công",
+      "passed": true
+    },
+    {
+      "case": "REPLAY bị từ chối, không tạo file thứ hai",
+      "passed": true
+    },
+    {
+      "case": "Các khóa ngẫu nhiên trong lần chạy này đều khác nhau",
+      "passed": true
+    }
+  ],
+  "received_files": [
+    {
+      "path": "received/alice/0002_ec8ec30e5c607a45c1eb3f111b90610c_phan_hoi.txt",
+      "bytes": 131,
+      "sha256": "476cc90689b5873e736de910270c7498e3e5a90f3ba995c59617061b1e42e849"
+    },
+    {
+      "path": "received/bob/0002_ac37ecd7e9a18696ea183c44998b2999_loi_chao.txt",
+      "bytes": 158,
+      "sha256": "637557f5168cfc886767f7cd954c2365d1c5cb78bc68e75d5c5cafe30f5eb48f"
+    },
+    {
+      "path": "received/bob/0003_e463f28114499a5c6f8fb28b2ab1de49_loi_chao.txt",
+      "bytes": 158,
+      "sha256": "637557f5168cfc886767f7cd954c2365d1c5cb78bc68e75d5c5cafe30f5eb48f"
+    },
+    {
+      "path": "received/bob/0004_fe755fefdd68d65489686a04d640b591_loi_chao.txt",
+      "bytes": 158,
+      "sha256": "637557f5168cfc886767f7cd954c2365d1c5cb78bc68e75d5c5cafe30f5eb48f"
+    },
+    {
+      "path": "received/bob/0005_253f8af37227d99a92e5baba14cf944b_loi_chao.txt",
+      "bytes": 158,
+      "sha256": "637557f5168cfc886767f7cd954c2365d1c5cb78bc68e75d5c5cafe30f5eb48f"
+    },
+    {
+      "path": "received/bob/0006_6be266bcba8e3fa5c89c296933333f9b_loi_chao.txt",
+      "bytes": 158,
+      "sha256": "637557f5168cfc886767f7cd954c2365d1c5cb78bc68e75d5c5cafe30f5eb48f"
+    }
+  ],
+  "passed": true
+}

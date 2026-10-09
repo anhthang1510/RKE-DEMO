@@ -1,0 +1,3 @@
+Xin chào Bob!
+Đây là file thử nghiệm giao thức Randomized Key Exchange.
+Mỗi lần gửi có một khóa mới. Hash đúng thì mới giải mã.
